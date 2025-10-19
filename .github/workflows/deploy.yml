@@ -1,4 +1,4 @@
-name: Deploy to HOSTIFY via FTP
+name: Deploy to HOST via FTP
 
 on:
   push:
@@ -15,9 +15,9 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ${{ secrets.HOSTIFY_HOST }}
-          username: ${{ secrets.HOSTIFY_USER }}
-          password: ${{ secrets.HOSTIFY_PASSWORD }}
+          server: ${{ secrets.HOST_HOST }}
+          username: ${{ secrets.HOST_USER }}
+          password: ${{ secrets.HOST_PASSWORD }}
           local-dir: ./
           server-dir: /
           git-ftp-args: >
