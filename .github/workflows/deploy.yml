@@ -1,0 +1,25 @@
+name: Deploy to HOSTIFY via FTP
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.HOSTIFY_HOST }}
+          username: ${{ secrets.HOSTIFY_USER }}
+          password: ${{ secrets.HOSTIFY_PASSWORD }}
+          local-dir: ./
+          server-dir: /
+          git-ftp-args: >
+            --exclude .git*
+            --exclude .github*
